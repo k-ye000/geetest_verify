@@ -1,4 +1,5 @@
 # geetest_verify
 滑动验证码移动距离获取
+
 获得原图与验证码图，可以调用difference_between_bg_fullbg方法，这一方法在比较常见
 若无法获得原图或原图获取比较麻烦，只有验证码图，或者只能从网页截取验证码图片时，可以调用single_img_position
