@@ -53,8 +53,6 @@ class Get_Slide_IMG_Position(object):
 
     # 如果没有获取到bg_img_path/fullbg_img_path则单独处理slide_img_path
     def single_img_position(self):
-        # 图片可以直接截取，截取的验证码图片需要先裁剪掉带有滑块的部分
-        # 最终返回的position要加上裁掉的宽度
         '''
         思路：
             1.图片灰度化处理后验证码缺口与图片背景会有一个明显边界
@@ -87,6 +85,13 @@ class Get_Slide_IMG_Position(object):
             l = [i for i in range(20, 50)]
 
             # 遍历拆分出每一列
+            '''
+            考虑特殊情况：
+                1.缺口紧挨滑块;
+                2.缺口右侧边缘紧挨背景边缘;
+                取值范围可以缩小，不需要全图遍历，
+                去掉两侧的极值，即滑块宽度，同时也能排除使用网页截图时最左侧滑块的干扰
+            '''
             for w in range(40,width-40):
                 store_arr = []
                 pix_list = bg_pixel_array[:, w]
