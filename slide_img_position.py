@@ -81,7 +81,10 @@ class Get_Slide_IMG_Position(object):
             slide_size = 30  # slide_size值过大或过小都有影响
 
             # 设置灰度值范围
-            l = [i for i in range(20, 50)]
+            '''
+            >>>灰度值范围请根据图片边界rgb值确定,Gray=R*0.3+G*0.59+B*0.11     
+            '''
+            Gray_list = [i for i in range(20, 50)]
 
             # 遍历拆分出每一列
             '''
@@ -97,7 +100,7 @@ class Get_Slide_IMG_Position(object):
                 # 遍历一列中每个像素点的灰度值
                 for index in range(1, len(pix_list)-1):
                     # 判断每个像素点灰度值范围，且相邻两个灰度值都要在范围内
-                    if pix_list[index-1] in l and pix_list[index] in l and pix_list[index+1] in l:
+                    if pix_list[index-1] in Gray_list and pix_list[index] in Gray_list and pix_list[index+1] in Gray_list:
                         # 这里的index为满足灰度范围的像素点的纵坐标
                         store_arr.append(index)
                         # print(pix_list[index])
