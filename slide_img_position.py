@@ -1,4 +1,3 @@
-from os import waitpid
 import numpy as np
 from PIL import Image
 
